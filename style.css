@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #222;
+}
+
+main {   
+    margin: 24px auto;
+    padding: 24px;
+    background-color: white;
+    border-radius: 12px;
+    max-width: 390px;
+}
+input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.aviso {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #f0f0f0;
+  border-left: 4px solid #555;
+  border-radius: 4px;
+}

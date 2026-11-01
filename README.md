@@ -1,73 +1,98 @@
 # Senha Forte
 
-**Status:** rascunho de interface e critérios de avaliação. O medidor ainda não foi implementado nem publicado.
+**Atualizado em 1º de novembro de 2026**  
+**Status:** protótipo local em desenvolvimento. O projeto está versionado no GitHub, mas ainda não foi publicado como página web.
 
-Senha Forte é um projeto de aprendizado em design de interface, JavaScript e segurança defensiva. A proposta é avaliar uma **senha de exemplo** no navegador e explicar, em linguagem simples, por que ela recebeu a nota fraca, média ou forte. Um personagem ilustrado deverá reagir com três expressões: aflito, em dúvida e satisfeito.
+Senha Forte é um projeto de aprendizado que une interface, programação e segurança defensiva. A ideia é avaliar uma senha inventada no navegador e explicar, em linguagem simples, o motivo da nota e como melhorá-la. Um personagem ilustrado terá expressões aflita, em dúvida e satisfeita.
 
-> Use apenas senhas inventadas para testar. Nunca digite uma senha real sua neste projeto.
+> Use somente senhas inventadas. Nunca digite uma senha real neste projeto.
 
 ## Design
 
-- [Rascunho da tela e das três expressões](design/Rascunho%20%E2%80%A2%20Senha%20e%20avalia%C3%A7%C3%A3o.png)
+- [Rascunho da tela e das expressões](design/Rascunho%20%E2%80%A2%20Senha%20e%20avalia%C3%A7%C3%A3o.png)
 - [Arquivo no Figma](https://www.figma.com/design/KeqHO1oMBDl9ikuWDXo3Qg/Rascunho-%E2%80%94-tela-de-senha-e-avalia%C3%A7%C3%A3o?node-id=0-1)
 
-O PNG registra a etapa de exploração: as três expressões aparecem juntas para comparação. Na interface em uso, a intenção é mostrar somente a expressão correspondente à nota atual. O estado antes da digitação ainda está sendo ajustado no Figma.
+A decisão de design para o estado vazio é orientar, sem dar nota a um campo sem senha. A nota fica sem rótulo, o motivo explica o uso da ferramenta e o personagem fica neutro. Durante a avaliação, a intenção é mostrar somente a expressão correspondente ao estado atual.
 
-## Escopo da primeira versão
+## O que já foi feito
 
-- Um campo de senha, uma nota e uma explicação do motivo da nota.
-- Uma dica simples e respeitosa para melhorar a senha.
-- Um personagem com três expressões, sem animações elaboradas.
-- Avaliação feita somente no navegador, sem servidor e sem salvar a senha.
-- Aviso de que a nota é uma estimativa, não uma garantia de segurança.
+- Estrutura inicial em HTML e estilo básico em CSS.
+- Campo de senha com rótulo e aviso para usar somente exemplos inventados.
+- Resultado com espaços separados para nota, motivo e dica.
+- JavaScript reage à digitação e atualiza o resultado conforme o tamanho:
+  - Até 7 caracteres: **Fraca**.
+  - De 8 a 14: **Pode melhorar**.
+  - 15 ou mais: **Em análise**, até as verificações de previsibilidade serem implementadas.
+- O código já identifica algumas sequências (123, 321, abc, cba, qwerty, ytrewq), mas ainda não usa essa detecção para alterar a nota.
 
-Depois da primeira versão publicada, possíveis melhorias serão consideradas uma por vez: mostrar ou ocultar a senha, consultar uma lista local de senhas comuns e animar o personagem.
+Esta é uma etapa intermediária. O medidor ainda não aplica os descontos por sequência, não detecta blocos repetidos nem compara com uma lista de senhas comuns. O personagem também ainda não está conectado à nota.
 
-## Critérios pensados antes do código
+## Critérios e decisões
 
-- **Tamanho tem o maior peso.** Uma senha curta não deve chegar a “forte” apenas por misturar letras, números e símbolos.
-- **Variedade ajuda, mas é um bônus menor.** Símbolos não compensam pouco comprimento.
-- **Sequências óbvias reduzem a nota.** Exemplos: `123`, `abc` e padrões conhecidos do teclado.
-- **Repetições e palavras previsíveis merecem atenção.** Uma sequência longa repetida não deve parecer forte só pelo número de caracteres. A detecção mais ampla desses casos ainda precisa ser delimitada para a v1.
-- **A nota precisa explicar a decisão.** Além de “fraca”, “média” ou “forte”, a tela deve mostrar o motivo e uma ação possível para melhorar.
+O comprimento tem o maior peso. A variedade de caracteres pode dar um bônus pequeno, mas símbolos não devem fazer uma senha curta parecer forte. Frases longas com palavras sem relação entre si são uma opção fácil de lembrar. Espaços contam no comprimento. A nota não dependerá só da cor: o resultado terá texto e personagem.
 
-O medidor só poderá observar o texto digitado. Ele não saberá se uma senha foi publicada, vazada, reutilizada ou contém um dado pessoal de quem a criou. Por isso, nenhuma nota deve ser apresentada como garantia.
-
-### Casos de exemplo para orientar os testes
-
-| Exemplo inventado | Avaliação desejada | Motivo principal |
+| Comprimento | Nota máxima da régua | Regra |
 | --- | --- | --- |
-| `abc123` | Fraca | Curta e formada por sequências óbvias. |
-| `Zk9#vQ` | Fraca | Tem variedade, mas apenas seis caracteres. |
-| `123456123456123456` | Fraca | Repete um padrão previsível. |
-| `tijolo lua abacate bicicleta` | Não usar como senha real | Ilustra uma frase longa; por estar publicada aqui, deixou de ser secreta. |
+| Até 7 caracteres | Fraca | Explica que falta tamanho. |
+| De 8 a 14 caracteres | Pode melhorar | Reconhece o que está bom e sugere uma frase mais longa. |
+| 15 ou mais | Pode chegar a forte | Só depois de passar pelas verificações de previsibilidade. |
 
-Esses exemplos são material de estudo, **não sugestões de senhas para uso**. Os limites exatos entre as três notas ainda serão definidos antes de escrever a lógica.
+A mensagem de melhoria não mostra quantos caracteres faltam. Ela sugere juntar palavras sem relação entre si, para evitar incentivar alguém a acrescentar uma única letra só para cruzar o limite. O corte é uma escolha de design do projeto, não uma fronteira que certifica segurança.
 
-## Privacidade e cuidado nos testes
+### Por que a régua usa 15 caracteres?
 
-Na implementação planejada, o texto digitado não deve sair do navegador: nada de envio por rede, `localStorage` ou impressão da senha no console. Os testes devem usar somente exemplos inventados. Como ainda não existe código funcional, essas são **regras de implementação**, não funcionalidades já verificadas.
+Usei como referência o mínimo de 15 caracteres que o [NIST SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) exige para senhas usadas como único fator de autenticação. Senhas usadas somente como parte de um processo com MFA podem ter mínimo de 8 caracteres. A [CISA recomenda pelo menos 16 caracteres](https://www.cisa.gov/resources-tools/resources/secure-our-world-passwords-tip-sheet). Optei por 15 como uma régua educativa para incentivar senhas longas. A nota é uma estimativa: atingir 15 caracteres não certifica que uma senha é segura.
+
+### Regras de previsibilidade planejadas
+
+- Uma senha presente na lista local de senhas comuns ou de exemplos publicados terá teto **Fraca**.
+- Um bloco repetido, como um trecho repetido várias vezes, também terá teto **Fraca**.
+- Sequências óbvias reduzem a nota em um degrau.
+- A variedade pode dar um bônus pequeno, mas nunca decide sozinha se a senha é forte.
+- O medidor não pede nome, aniversário ou outros dados pessoais.
+
+A detecção será limitada às regras e à lista incluídas no projeto. Ela não consulta serviços externos nem sabe se uma senha foi vazada ou reutilizada.
+
+## Exemplos publicados
+
+Estes exemplos são fictícios e servem apenas para documentar critérios. Não devem ser usados como senhas. Como serão publicados, deverão ser incluídos na lista local de exemplos conhecidos quando essa verificação for implementada.
+
+| Exemplo | Critério ilustrado |
+| --- | --- |
+| abc123 | Curta e com sequências óbvias. |
+| Zk9#vQ | Curta, mesmo com variedade de caracteres. |
+| 123456123456123456 | Longa, mas repete um bloco previsível. |
+| tijolo lua abacate bicicleta | Frase longa usada para discutir comprimento; publicada, portanto não é uma senha secreta. |
+
+## Privacidade e limites
+
+A regra central do projeto é que a senha nunca saia do navegador, não seja guardada em localStorage e não apareça no console. No estado atual, o código-fonte não contém envio para servidor, armazenamento local nem impressão da senha no console. Essa revisão do código não substitui uma verificação final antes da publicação.
+
+O medidor avalia somente o texto digitado. Ele não consegue saber se a senha é pessoal, vazada, compartilhada ou reutilizada. Por isso, a nota nunca é uma garantia. Use uma senha diferente em cada site e não teste senhas reais.
 
 ## Mini glossário
 
-**Força bruta:** tentativa de muitas combinações até encontrar a senha.
-Quanto mais possibilidades reais houver, mais trabalho esse método exige.
+**Força bruta:** tentativa de muitas combinações até encontrar uma senha.  
+Quanto mais possibilidades reais existirem, mais tentativas serão necessárias.
 
-**Ataque de dicionário:** tentativa de palavras, frases e padrões que as pessoas costumam escolher.
+**Ataque de dicionário:** tentativa de palavras, frases e padrões prováveis.  
 Uma senha previsível pode ser testada cedo, mesmo que pareça comprida.
 
-**Senha comum:** senha usada por muitas pessoas ou presente em listas conhecidas.
-Por ser fácil de prever, não deve ser considerada forte só por ter símbolos.
+**Senha comum:** senha usada por muitas pessoas ou presente em listas conhecidas.  
+Por ser previsível, não fica forte só por ter símbolos.
 
-**Autenticação:** processo de verificar se alguém é quem afirma ser ao acessar uma conta.
-A senha pode fazer parte desse processo, mas a nota deste projeto não autentica ninguém.
+**Autenticação:** processo de verificar se alguém controla um autenticador ao acessar uma conta.  
+Uma senha pode fazer parte desse processo; a nota deste projeto não autentica ninguém.
 
 ## Próximos passos
 
-1. Finalizar no Figma o estado vazio e as três expressões em uso individual.
-2. Definir os limites das notas e as mensagens de feedback.
-3. Escrever o HTML e o CSS da tela.
-4. Implementar a avaliação em JavaScript, testá-la com exemplos inventados e publicar a página.
+1. Usar temSequencia para aplicar o rebaixamento por sequências.
+2. Detectar blocos repetidos e comparar com uma lista local pequena, incluindo os exemplos publicados.
+3. Refinar os motivos e as dicas para cada resultado.
+4. Conectar as três expressões do personagem e o estado neutro.
+5. Revisar a privacidade e testar os critérios somente com exemplos inventados.
+6. Publicar a página e confirmar que a avaliação pode ser refeita do zero.
 
-O código será escrito pelo autor do projeto como exercício de aprendizado. Este README registra as decisões de design e segurança tomadas até aqui.
+O código é escrito pelo autor como exercício de aprendizado. A IA atua como mentora, explicando conceitos e erros em etapas pequenas.
+
 
