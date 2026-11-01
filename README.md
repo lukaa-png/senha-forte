@@ -64,35 +64,4 @@ Estes exemplos são fictícios e servem apenas para documentar critérios. Não 
 | 123456123456123456 | Longa, mas repete um bloco previsível. |
 | tijolo lua abacate bicicleta | Frase longa usada para discutir comprimento; publicada, portanto não é uma senha secreta. |
 
-## Privacidade e limites
-
-A regra central do projeto é que a senha nunca saia do navegador, não seja guardada em localStorage e não apareça no console. No estado atual, o código-fonte não contém envio para servidor, armazenamento local nem impressão da senha no console. Essa revisão do código não substitui uma verificação final antes da publicação.
-
-O medidor avalia somente o texto digitado. Ele não consegue saber se a senha é pessoal, vazada, compartilhada ou reutilizada. Por isso, a nota nunca é uma garantia. Use uma senha diferente em cada site e não teste senhas reais.
-
-## Mini glossário
-
-**Força bruta:** tentativa de muitas combinações até encontrar uma senha.  
-Quanto mais possibilidades reais existirem, mais tentativas serão necessárias.
-
-**Ataque de dicionário:** tentativa de palavras, frases e padrões prováveis.  
-Uma senha previsível pode ser testada cedo, mesmo que pareça comprida.
-
-**Senha comum:** senha usada por muitas pessoas ou presente em listas conhecidas.  
-Por ser previsível, não fica forte só por ter símbolos.
-
-**Autenticação:** processo de verificar se alguém controla um autenticador ao acessar uma conta.  
-Uma senha pode fazer parte desse processo; a nota deste projeto não autentica ninguém.
-
-## Próximos passos
-
-1. Usar temSequencia para aplicar o rebaixamento por sequências.
-2. Detectar blocos repetidos e comparar com uma lista local pequena, incluindo os exemplos publicados.
-3. Refinar os motivos e as dicas para cada resultado.
-4. Conectar as três expressões do personagem e o estado neutro.
-5. Revisar a privacidade e testar os critérios somente com exemplos inventados.
-6. Publicar a página e confirmar que a avaliação pode ser refeita do zero.
-
-O código é escrito pelo autor como exercício de aprendizado. A IA atua como mentora, explicando conceitos e erros em etapas pequenas.
-
 
