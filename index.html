@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senha Forte</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senha Forte</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body> 
-    <main>
-  <h1>Senha Forte</h1>
-  <p>Digite apenas uma senha de exemplo para entender a avaliação.</p>
-  <label for="senha">Senha de exemplo</label>
-<input id="senha" type="password">
-<p id="feedback">Depois de digitar, explicaremos a nota e como melhorar.</p>
-<p>Isto é uma estimativa, não uma garantia. Use uma senha diferente em cada site.</p>
-<p class="aviso">Neste medidor, use apenas senhas inventadas. Nunca digite uma senha real</p>
+
+<body>
+  <main>
+    <h1>Senha Forte</h1>
+    <p>Digite apenas uma senha de exemplo para entender a avaliação.</p>
+    <label for="senha">Senha de exemplo</label>
+    <input id="senha" type="password" autocomplete="off" aria-describedby="aviso">
+    <p id="feedback">Depois de digitar, explicaremos a nota e como melhorar.</p>
+    <p>Isto é uma estimativa, não uma garantia. Use uma senha diferente em cada site.</p>
+    <p id="aviso" class="aviso">Neste medidor, use apenas senhas inventadas. Nunca digite uma senha real.</p>
     <section id="resultado" hidden aria-live="polite">
-  <h2 id="nota"></h2>
-  <p id="motivo"></p>
-  <p id="dica"></p>
+      <h2 id="nota"></h2>
+      <p id="motivo"></p>
+      <p id="dica"></p>
     </section>
-</main>
-<script src="script.js"></script>
+  </main>
+  <script src="script.js"></script>
 </body>
+
 </html>

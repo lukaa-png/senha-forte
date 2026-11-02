@@ -7,6 +7,8 @@ Senha Forte é um projeto de aprendizado que une interface, programação e segu
 
 > Use somente senhas inventadas. Nunca digite uma senha real neste projeto.
 
+**Privacidade:** a senha fica no navegador. O projeto não envia, salva nem mostra a senha no console.
+
 ## Design
 
 - [Rascunho da tela e das expressões](design/Rascunho%20%E2%80%A2%20Senha%20e%20avalia%C3%A7%C3%A3o.png)
@@ -16,16 +18,10 @@ A decisão de design para o estado vazio é orientar, sem dar nota a um campo se
 
 ## O que já foi feito
 
-- Estrutura inicial em HTML e estilo básico em CSS.
-- Campo de senha com rótulo e aviso para usar somente exemplos inventados.
-- Resultado com espaços separados para nota, motivo e dica.
-- JavaScript reage à digitação e atualiza o resultado conforme o tamanho:
-  - Até 7 caracteres: **Fraca**.
-  - De 8 a 14: **Pode melhorar**.
-  - 15 ou mais: **Em análise**, até as verificações de previsibilidade serem implementadas.
-- O código já identifica algumas sequências (123, 321, abc, cba, qwerty, ytrewq), mas ainda não usa essa detecção para alterar a nota.
+- Hoje ajustei a nota para considerar tamanho, sequências, blocos repetidos e senhas conhecidas.
+- Também ajustei o aviso de privacidade e a largura da tela para celular.
 
-Esta é uma etapa intermediária. O medidor ainda não aplica os descontos por sequência, não detecta blocos repetidos nem compara com uma lista de senhas comuns. O personagem também ainda não está conectado à nota.
+O personagem ainda não está conectado à nota, e o bônus de variedade não foi implementado. As listas de padrões e senhas conhecidas são pequenas e não detectam todas as senhas previsíveis.
 
 ## Critérios e decisões
 
@@ -43,7 +39,7 @@ A mensagem de melhoria não mostra quantos caracteres faltam. Ela sugere juntar 
 
 Usei como referência o mínimo de 15 caracteres que o [NIST SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) exige para senhas usadas como único fator de autenticação. Senhas usadas somente como parte de um processo com MFA podem ter mínimo de 8 caracteres. A [CISA recomenda pelo menos 16 caracteres](https://www.cisa.gov/resources-tools/resources/secure-our-world-passwords-tip-sheet). Optei por 15 como uma régua educativa para incentivar senhas longas. A nota é uma estimativa: atingir 15 caracteres não certifica que uma senha é segura.
 
-### Regras de previsibilidade planejadas
+### Regras de previsibilidade
 
 - Uma senha presente na lista local de senhas comuns ou de exemplos publicados terá teto **Fraca**.
 - Um bloco repetido, como um trecho repetido várias vezes, também terá teto **Fraca**.
@@ -51,11 +47,11 @@ Usei como referência o mínimo de 15 caracteres que o [NIST SP 800-63B](https:/
 - A variedade pode dar um bônus pequeno, mas nunca decide sozinha se a senha é forte.
 - O medidor não pede nome, aniversário ou outros dados pessoais.
 
-A detecção será limitada às regras e à lista incluídas no projeto. Ela não consulta serviços externos nem sabe se uma senha foi vazada ou reutilizada.
+A detecção é limitada às regras e à lista incluídas no projeto. Ela não consulta serviços externos nem sabe se uma senha foi vazada ou reutilizada.
 
 ## Exemplos publicados
 
-Estes exemplos são fictícios e servem apenas para documentar critérios. Não devem ser usados como senhas. Como serão publicados, deverão ser incluídos na lista local de exemplos conhecidos quando essa verificação for implementada.
+Estes exemplos são fictícios e servem apenas para documentar critérios. Não devem ser usados como senhas. Eles estão na lista local de senhas conhecidas.
 
 | Exemplo | Critério ilustrado |
 | --- | --- |
