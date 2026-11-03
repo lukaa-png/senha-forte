@@ -1,6 +1,7 @@
 # Senha Forte
 
-**Atualizado em 1º de novembro de 2026**  
+**Atualizado em 3 de novembro de 2026**
+
 **Status:** protótipo local em desenvolvimento. O projeto está versionado no GitHub, mas ainda não foi publicado como página web.
 
 Senha Forte é um projeto de aprendizado que une interface, programação e segurança defensiva. A ideia é avaliar uma senha inventada no navegador e explicar, em linguagem simples, o motivo da nota e como melhorá-la. Um personagem ilustrado terá expressões aflita, em dúvida e satisfeita.
@@ -20,6 +21,7 @@ A decisão de design para o estado vazio é orientar, sem dar nota a um campo se
 
 - Hoje ajustei a nota para considerar tamanho, sequências, blocos repetidos e senhas conhecidas.
 - Também ajustei o aviso de privacidade e a largura da tela para celular.
+- Comecei a identificar letras, números e símbolos. Espaços não contam como símbolo.
 
 O personagem ainda não está conectado à nota, e o bônus de variedade não foi implementado. As listas de padrões e senhas conhecidas são pequenas e não detectam todas as senhas previsíveis.
 

@@ -38,6 +38,18 @@ campoSenha.addEventListener("input", function () {
     feedback.hidden = true;
     const tamanho = campoSenha.value.length;
     const senhaEmMinusculas = campoSenha.value.toLowerCase();
+    let temNumero = false;
+    let temLetra = false;
+    let temSimbolo = false;
+    for (const caractere of campoSenha.value) {
+        if ("0123456789".includes(caractere)) {
+            temNumero = true;
+        } else if (caractere.toLowerCase() !== caractere.toUpperCase()) {
+            temLetra = true;
+        } else if (caractere.trim() !== "") {
+            temSimbolo = true;
+        }
+    }
     const temBlocoRepetido = ehBlocoRepetido(senhaEmMinusculas);
     const senhaConhecida = senhasConhecidas.includes(senhaEmMinusculas.trim());
     const temSequencia =
