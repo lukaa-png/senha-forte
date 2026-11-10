@@ -19,9 +19,9 @@ A decisão de design para o estado vazio é orientar, sem dar nota a um campo se
 
 Na revisão da interface, deixei as linhas e a tipografia mais sóbrias e reduzi o espaço ocupado pelo personagem. A avaliação continua perto do campo no celular.
 
-A interface agora usa um tema escuro. Mantive a nota e o motivo em texto; as cores e a expressão do personagem ajudam a leitura, mas não são as únicas pistas.
+A interface clara segue como versão principal, com o tema escuro como alternativa. Mantive a nota e o motivo em texto; as cores e a expressão do personagem ajudam a leitura, mas não são as únicas pistas.
 
-O botão no cabeçalho alterna entre os temas escuro e claro. A escolha não é salva: ao recarregar, a página volta ao tema escuro.
+O botão no cabeçalho alterna entre os temas claro e escuro. A escolha não é salva: ao recarregar, a página volta ao tema claro.
 
 ## O que já foi feito
 
