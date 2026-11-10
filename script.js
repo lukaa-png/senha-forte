@@ -17,6 +17,13 @@ const dicaBloco = document.getElementById("dica-bloco");
 const estadoVisual = document.getElementById("estado-visual");
 const personagem = document.getElementById("personagem");
 const personagemLegenda = document.getElementById("personagem-legenda");
+const botaoTema = document.getElementById("alternar-tema");
+
+botaoTema.addEventListener("click", function () {
+    const temaClaro = document.documentElement.dataset.tema === "claro";
+    document.documentElement.dataset.tema = temaClaro ? "escuro" : "claro";
+    botaoTema.textContent = temaClaro ? "Tema claro" : "Tema escuro";
+});
 
 function atualizarPersonagem(estado) {
     if (estado === "Fraca") {

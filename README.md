@@ -21,6 +21,8 @@ Na revisão da interface, deixei as linhas e a tipografia mais sóbrias e reduzi
 
 A interface agora usa um tema escuro. Mantive a nota e o motivo em texto; as cores e a expressão do personagem ajudam a leitura, mas não são as únicas pistas.
 
+O botão no cabeçalho alterna entre os temas escuro e claro. A escolha não é salva: ao recarregar, a página volta ao tema escuro.
+
 ## O que já foi feito
 
 - A nota considera tamanho, sequências, blocos repetidos e uma lista pequena de senhas conhecidas.

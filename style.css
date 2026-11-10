@@ -1,8 +1,45 @@
 :root {
+  --pagina: #111719;
+  --painel: #1a2326;
+  --texto: #e8edeb;
+  --texto-forte: #f4f7f5;
+  --muted: #b5c1c0;
+  --linha: #3b484a;
+  --linha-forte: #dce5e2;
+  --separador: #8b9a9a;
+  --campo: #11191c;
+  --campo-linha: #718386;
+  --foco: #9bd6d0;
+  --estado-vazio: #92bcbc;
+  --estado-fraca: #f1a39b;
+  --estado-media: #e9c587;
+  --estado-forte: #9ad6b3;
+  --filtro-personagem: invert(1);
+  --mescla-personagem: screen;
   font-family: "Segoe UI", Arial, sans-serif;
-  color: #e8edeb;
-  background: #111719;
+  color: var(--texto);
+  background: var(--pagina);
   font-synthesis: none;
+}
+
+:root[data-tema="claro"] {
+  --pagina: #f4f3f0;
+  --painel: #fff;
+  --texto: #222c30;
+  --texto-forte: #222c30;
+  --muted: #536064;
+  --linha: #cbd0ce;
+  --linha-forte: #222c30;
+  --separador: #7c8788;
+  --campo: #fafaf9;
+  --campo-linha: #9eaaa9;
+  --foco: #335f63;
+  --estado-vazio: #425a61;
+  --estado-fraca: #903d37;
+  --estado-media: #805821;
+  --estado-forte: #2b6655;
+  --filtro-personagem: none;
+  --mescla-personagem: normal;
 }
 
 * { box-sizing: border-box; }
@@ -21,16 +58,40 @@ body {
 .cabecalho {
   margin-bottom: 28px;
   padding: 20px 0 30px;
-  border-top: 2px solid #dce5e2;
-  border-bottom: 1px solid #3b484a;
+  border-top: 2px solid var(--linha-forte);
+  border-bottom: 1px solid var(--linha);
 }
+
+.cabecalho-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.botao-tema {
+  flex: none;
+  padding: 7px 10px;
+  border: 1px solid var(--linha);
+  border-radius: 3px;
+  background: var(--painel);
+  color: var(--texto);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.botao-tema:hover { border-color: var(--linha-forte); }
+.botao-tema:focus-visible { outline: 2px solid var(--foco); outline-offset: 3px; }
 
 .marcador,
 .etapa,
 .palco-marcador,
 .dica-titulo {
   margin: 0;
-  color: #b5c1c0;
+  color: var(--muted);
   font-family: Consolas, "Courier New", monospace;
   font-size: 0.73rem;
   font-weight: 600;
@@ -42,7 +103,7 @@ body {
 .etapa span,
 .palco-marcador span {
   margin: 0 5px;
-  color: #8b9a9a;
+  color: var(--separador);
 }
 
 h1 {
@@ -56,7 +117,7 @@ h1 {
 .introducao {
   max-width: 52ch;
   margin: 0;
-  color: #b9c5c3;
+  color: var(--muted);
   font-size: 1.05rem;
   line-height: 1.55;
 }
@@ -70,13 +131,13 @@ h1 {
 
 .coluna-principal {
   min-width: 0;
-  border: 1px solid #3b484a;
-  background: #1a2326;
+  border: 1px solid var(--linha);
+  background: var(--painel);
 }
 
 .cartao { padding: 28px 30px; }
 
-.entrada { border-bottom: 1px solid #3b484a; }
+.entrada { border-bottom: 1px solid var(--linha); }
 
 .entrada h2 {
   margin: 10px 0 26px;
@@ -98,36 +159,36 @@ input {
   width: 100%;
   min-height: 48px;
   padding: 10px 13px;
-  border: 1px solid #718386;
+  border: 1px solid var(--campo-linha);
   border-radius: 3px;
-  background: #11191c;
-  color: #f4f7f5;
+  background: var(--campo);
+  color: var(--texto-forte);
   font: inherit;
   font-size: 1rem;
 }
 
 input:focus-visible {
-  outline: 2px solid #9bd6d0;
+  outline: 2px solid var(--foco);
   outline-offset: 2px;
-  border-color: #9bd6d0;
+  border-color: var(--foco);
 }
 
 .ajuda {
   margin: 10px 0 0;
-  color: #b5c1c0;
+  color: var(--muted);
   font-size: 0.87rem;
   line-height: 1.5;
 }
 
 .resultado {
-  --estado: #92bcbc;
+  --estado: var(--estado-vazio);
   border-left: 3px solid var(--estado);
   padding-left: 27px;
 }
 
-.resultado[data-estado="fraca"] { --estado: #f1a39b; }
-.resultado[data-estado="media"] { --estado: #e9c587; }
-.resultado[data-estado="forte"] { --estado: #9ad6b3; }
+.resultado[data-estado="fraca"] { --estado: var(--estado-fraca); }
+.resultado[data-estado="media"] { --estado: var(--estado-media); }
+.resultado[data-estado="forte"] { --estado: var(--estado-forte); }
 
 .resultado-topo {
   display: flex;
@@ -148,7 +209,7 @@ input:focus-visible {
 
 .resultado h2 {
   margin: 22px 0 9px;
-  color: #f4f7f5;
+  color: var(--texto-forte);
   font-size: clamp(1.8rem, 3vw, 2.2rem);
   font-weight: 650;
   letter-spacing: -0.04em;
@@ -164,7 +225,7 @@ input:focus-visible {
 .dica-bloco {
   margin-top: 24px;
   padding-top: 15px;
-  border-top: 1px solid #3b484a;
+  border-top: 1px solid var(--linha);
 }
 
 .dica-titulo { margin-bottom: 7px; }
@@ -177,15 +238,15 @@ input:focus-visible {
 .ressalva {
   margin: 24px 0 0;
   padding-top: 15px;
-  border-top: 1px solid #3b484a;
-  color: #b5c1c0;
+  border-top: 1px solid var(--linha);
+  color: var(--muted);
   font-size: 0.82rem;
   line-height: 1.5;
 }
 
 .personagem {
   margin: 0;
-  border-top: 2px solid #dce5e2;
+  border-top: 2px solid var(--linha-forte);
 }
 
 .palco {
@@ -204,15 +265,15 @@ input:focus-visible {
   margin-top: 12px;
   object-fit: contain;
   object-position: center bottom;
-  filter: invert(1);
-  mix-blend-mode: screen;
+  filter: var(--filtro-personagem);
+  mix-blend-mode: var(--mescla-personagem);
 }
 
 .personagem figcaption {
   margin-top: 8px;
   padding-top: 11px;
-  border-top: 1px solid #3b484a;
-  color: #b5c1c0;
+  border-top: 1px solid var(--linha);
+  color: var(--muted);
   font-size: 0.82rem;
   line-height: 1.4;
 }
