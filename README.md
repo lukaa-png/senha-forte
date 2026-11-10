@@ -19,6 +19,8 @@ A decisão de design para o estado vazio é orientar, sem dar nota a um campo se
 
 Na revisão da interface, deixei as linhas e a tipografia mais sóbrias e reduzi o espaço ocupado pelo personagem. A avaliação continua perto do campo no celular.
 
+A interface agora usa um tema escuro. Mantive a nota e o motivo em texto; as cores e a expressão do personagem ajudam a leitura, mas não são as únicas pistas.
+
 ## O que já foi feito
 
 - A nota considera tamanho, sequências, blocos repetidos e uma lista pequena de senhas conhecidas.

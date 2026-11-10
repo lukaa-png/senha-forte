@@ -1,7 +1,7 @@
 :root {
   font-family: "Segoe UI", Arial, sans-serif;
-  color: #222c30;
-  background: #f4f3f0;
+  color: #e8edeb;
+  background: #111719;
   font-synthesis: none;
 }
 
@@ -21,8 +21,8 @@ body {
 .cabecalho {
   margin-bottom: 28px;
   padding: 20px 0 30px;
-  border-top: 2px solid #222c30;
-  border-bottom: 1px solid #cbd0ce;
+  border-top: 2px solid #dce5e2;
+  border-bottom: 1px solid #3b484a;
 }
 
 .marcador,
@@ -30,7 +30,7 @@ body {
 .palco-marcador,
 .dica-titulo {
   margin: 0;
-  color: #536064;
+  color: #b5c1c0;
   font-family: Consolas, "Courier New", monospace;
   font-size: 0.73rem;
   font-weight: 600;
@@ -42,7 +42,7 @@ body {
 .etapa span,
 .palco-marcador span {
   margin: 0 5px;
-  color: #7c8788;
+  color: #8b9a9a;
 }
 
 h1 {
@@ -56,7 +56,7 @@ h1 {
 .introducao {
   max-width: 52ch;
   margin: 0;
-  color: #4b585c;
+  color: #b9c5c3;
   font-size: 1.05rem;
   line-height: 1.55;
 }
@@ -70,13 +70,13 @@ h1 {
 
 .coluna-principal {
   min-width: 0;
-  border: 1px solid #cbd0ce;
-  background: #fff;
+  border: 1px solid #3b484a;
+  background: #1a2326;
 }
 
 .cartao { padding: 28px 30px; }
 
-.entrada { border-bottom: 1px solid #cbd0ce; }
+.entrada { border-bottom: 1px solid #3b484a; }
 
 .entrada h2 {
   margin: 10px 0 26px;
@@ -98,36 +98,36 @@ input {
   width: 100%;
   min-height: 48px;
   padding: 10px 13px;
-  border: 1px solid #9eaaa9;
+  border: 1px solid #718386;
   border-radius: 3px;
-  background: #fafaf9;
-  color: #222c30;
+  background: #11191c;
+  color: #f4f7f5;
   font: inherit;
   font-size: 1rem;
 }
 
 input:focus-visible {
-  outline: 2px solid #335f63;
+  outline: 2px solid #9bd6d0;
   outline-offset: 2px;
-  border-color: #335f63;
+  border-color: #9bd6d0;
 }
 
 .ajuda {
   margin: 10px 0 0;
-  color: #536064;
+  color: #b5c1c0;
   font-size: 0.87rem;
   line-height: 1.5;
 }
 
 .resultado {
-  --estado: #425a61;
+  --estado: #92bcbc;
   border-left: 3px solid var(--estado);
   padding-left: 27px;
 }
 
-.resultado[data-estado="fraca"] { --estado: #903d37; }
-.resultado[data-estado="media"] { --estado: #805821; }
-.resultado[data-estado="forte"] { --estado: #2b6655; }
+.resultado[data-estado="fraca"] { --estado: #f1a39b; }
+.resultado[data-estado="media"] { --estado: #e9c587; }
+.resultado[data-estado="forte"] { --estado: #9ad6b3; }
 
 .resultado-topo {
   display: flex;
@@ -148,7 +148,7 @@ input:focus-visible {
 
 .resultado h2 {
   margin: 22px 0 9px;
-  color: #222c30;
+  color: #f4f7f5;
   font-size: clamp(1.8rem, 3vw, 2.2rem);
   font-weight: 650;
   letter-spacing: -0.04em;
@@ -164,7 +164,7 @@ input:focus-visible {
 .dica-bloco {
   margin-top: 24px;
   padding-top: 15px;
-  border-top: 1px solid #d8dddb;
+  border-top: 1px solid #3b484a;
 }
 
 .dica-titulo { margin-bottom: 7px; }
@@ -177,15 +177,15 @@ input:focus-visible {
 .ressalva {
   margin: 24px 0 0;
   padding-top: 15px;
-  border-top: 1px solid #d8dddb;
-  color: #536064;
+  border-top: 1px solid #3b484a;
+  color: #b5c1c0;
   font-size: 0.82rem;
   line-height: 1.5;
 }
 
 .personagem {
   margin: 0;
-  border-top: 2px solid #222c30;
+  border-top: 2px solid #dce5e2;
 }
 
 .palco {
@@ -204,13 +204,15 @@ input:focus-visible {
   margin-top: 12px;
   object-fit: contain;
   object-position: center bottom;
+  filter: invert(1);
+  mix-blend-mode: screen;
 }
 
 .personagem figcaption {
   margin-top: 8px;
   padding-top: 11px;
-  border-top: 1px solid #cbd0ce;
-  color: #536064;
+  border-top: 1px solid #3b484a;
+  color: #b5c1c0;
   font-size: 0.82rem;
   line-height: 1.4;
 }
