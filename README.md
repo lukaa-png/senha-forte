@@ -17,6 +17,8 @@ Senha Forte é um projeto de aprendizado que une interface, programação e segu
 
 A decisão de design para o estado vazio é orientar, sem dar nota a um campo sem senha. A nota fica como um traço, o motivo explica o uso da ferramenta e o personagem fica neutro. Durante a avaliação, aparece somente a expressão correspondente ao estado atual.
 
+Na revisão da interface, deixei as linhas e a tipografia mais sóbrias e reduzi o espaço ocupado pelo personagem. A avaliação continua perto do campo no celular.
+
 ## O que já foi feito
 
 - A nota considera tamanho, sequências, blocos repetidos e uma lista pequena de senhas conhecidas.

@@ -22,22 +22,22 @@ function atualizarPersonagem(estado) {
     if (estado === "Fraca") {
         personagem.src = "assets/personagem-aflito.png";
         personagem.alt = "Personagem com expressão aflita";
-        personagemLegenda.textContent = "Aflito: vale rever essa escolha.";
+        personagemLegenda.textContent = "Expressão aflita.";
         resultado.dataset.estado = "fraca";
     } else if (estado === "Pode melhorar") {
         personagem.src = "assets/personagem-em-duvida.png";
         personagem.alt = "Personagem com expressão em dúvida";
-        personagemLegenda.textContent = "Em dúvida: já há um começo, mas dá para melhorar.";
+        personagemLegenda.textContent = "Expressão em dúvida.";
         resultado.dataset.estado = "media";
     } else if (estado === "Forte") {
         personagem.src = "assets/personagem-satisfeito.png";
         personagem.alt = "Personagem com expressão satisfeita";
-        personagemLegenda.textContent = "Satisfeito: passou pelas verificações deste medidor.";
+        personagemLegenda.textContent = "Expressão satisfeita.";
         resultado.dataset.estado = "forte";
     } else {
         personagem.src = "assets/personagem-neutro.png";
         personagem.alt = "Personagem com expressão neutra, aguardando um exemplo";
-        personagemLegenda.textContent = "Pronto para analisar um exemplo.";
+        personagemLegenda.textContent = "Expressão neutra.";
         resultado.dataset.estado = "vazio";
     }
 }
@@ -62,6 +62,7 @@ campoSenha.addEventListener("input", function () {
         dica.textContent = "";
         dicaBloco.hidden = true;
         estadoVisual.textContent = "Aguardando";
+        estadoVisual.hidden = false;
         atualizarPersonagem("vazio");
         return;
     }
@@ -128,6 +129,6 @@ campoSenha.addEventListener("input", function () {
         dica.textContent = "Escolha uma frase inventada que não esteja nessa lista.";
     }
 
-    estadoVisual.textContent = nota.textContent;
+    estadoVisual.hidden = true;
     atualizarPersonagem(nota.textContent);
 });
