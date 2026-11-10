@@ -4,24 +4,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Senha Forte</title>
+  <title>Senha Forte — entenda a avaliação</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <main>
-    <h1>Senha Forte</h1>
-    <p>Digite apenas uma senha de exemplo para entender a avaliação.</p>
-    <label for="senha">Senha de exemplo</label>
-    <input id="senha" type="password" autocomplete="off" aria-describedby="aviso">
-    <p id="feedback">Depois de digitar, explicaremos a nota e como melhorar.</p>
-    <p>Isto é uma estimativa, não uma garantia. Use uma senha diferente em cada site.</p>
-    <p id="aviso" class="aviso">Neste medidor, use apenas senhas inventadas. Nunca digite uma senha real.</p>
-    <section id="resultado" hidden aria-live="polite">
-      <h2 id="nota"></h2>
-      <p id="motivo"></p>
-      <p id="dica"></p>
-    </section>
+  <main class="app">
+    <header class="cabecalho">
+      <p class="marcador">PROJETO DE APRENDIZADO <span aria-hidden="true">/</span> SEGURANÇA DEFENSIVA</p>
+      <h1>Senha Forte<span class="ponto" aria-hidden="true">.</span></h1>
+      <p class="introducao">Entenda o que torna uma senha previsível e veja caminhos para melhorá-la.</p>
+    </header>
+
+    <div class="conteudo">
+      <div class="coluna-principal">
+        <section class="cartao entrada" aria-labelledby="titulo-entrada">
+          <p class="etapa">01 <span aria-hidden="true">/</span> EXPERIMENTE</p>
+          <h2 id="titulo-entrada">Teste uma senha inventada</h2>
+          <label for="senha">Senha de exemplo</label>
+          <input id="senha" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="aviso">
+          <p id="aviso" class="ajuda">Use só exemplos inventados. Nunca digite uma senha real sua.</p>
+        </section>
+
+        <section id="resultado" class="cartao resultado" data-estado="vazio" aria-live="polite" aria-atomic="true" aria-labelledby="titulo-resultado">
+          <div class="resultado-topo">
+            <p id="titulo-resultado" class="etapa">02 <span aria-hidden="true">/</span> AVALIAÇÃO</p>
+            <span id="estado-visual" class="estado-visual">Aguardando</span>
+          </div>
+          <h2 id="nota">—</h2>
+          <p id="motivo" class="motivo">Digite uma senha de exemplo para ver por que ela receberia uma nota.</p>
+          <div id="dica-bloco" class="dica-bloco" hidden>
+            <p class="dica-titulo">Como melhorar</p>
+            <p id="dica"></p>
+          </div>
+          <p class="ressalva">Isto é uma estimativa, não uma garantia. Use uma senha diferente em cada site.</p>
+        </section>
+      </div>
+
+      <figure class="personagem">
+        <div class="palco">
+          <p class="palco-marcador">SEU COMPANHEIRO DE ANÁLISE</p>
+          <img id="personagem" src="assets/personagem-neutro.png" alt="Personagem com expressão neutra, aguardando um exemplo" width="1214" height="1295">
+        </div>
+        <figcaption id="personagem-legenda">Pronto para analisar um exemplo.</figcaption>
+      </figure>
+    </div>
   </main>
   <script src="script.js"></script>
 </body>

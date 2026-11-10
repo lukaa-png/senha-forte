@@ -13,7 +13,34 @@ const resultado = document.getElementById("resultado");
 const nota = document.getElementById("nota");
 const motivo = document.getElementById("motivo");
 const dica = document.getElementById("dica");
-const feedback = document.getElementById("feedback");
+const dicaBloco = document.getElementById("dica-bloco");
+const estadoVisual = document.getElementById("estado-visual");
+const personagem = document.getElementById("personagem");
+const personagemLegenda = document.getElementById("personagem-legenda");
+
+function atualizarPersonagem(estado) {
+    if (estado === "Fraca") {
+        personagem.src = "assets/personagem-aflito.png";
+        personagem.alt = "Personagem com expressão aflita";
+        personagemLegenda.textContent = "Aflito: vale rever essa escolha.";
+        resultado.dataset.estado = "fraca";
+    } else if (estado === "Pode melhorar") {
+        personagem.src = "assets/personagem-em-duvida.png";
+        personagem.alt = "Personagem com expressão em dúvida";
+        personagemLegenda.textContent = "Em dúvida: já há um começo, mas dá para melhorar.";
+        resultado.dataset.estado = "media";
+    } else if (estado === "Forte") {
+        personagem.src = "assets/personagem-satisfeito.png";
+        personagem.alt = "Personagem com expressão satisfeita";
+        personagemLegenda.textContent = "Satisfeito: passou pelas verificações deste medidor.";
+        resultado.dataset.estado = "forte";
+    } else {
+        personagem.src = "assets/personagem-neutro.png";
+        personagem.alt = "Personagem com expressão neutra, aguardando um exemplo";
+        personagemLegenda.textContent = "Pronto para analisar um exemplo.";
+        resultado.dataset.estado = "vazio";
+    }
+}
 function ehBlocoRepetido(texto) {
     for (let tamanhoBloco = 1; tamanhoBloco <= texto.length / 2; tamanhoBloco++) {
         if (texto.length % tamanhoBloco === 0) {
@@ -30,12 +57,15 @@ function ehBlocoRepetido(texto) {
 }
 campoSenha.addEventListener("input", function () {
     if (campoSenha.value === "") {
-        resultado.hidden = true;
-        feedback.textContent = "Depois de digitar, explicaremos a nota e como melhorar.";
-        feedback.hidden = false;
+        nota.textContent = "—";
+        motivo.textContent = "Digite uma senha de exemplo para ver por que ela receberia uma nota.";
+        dica.textContent = "";
+        dicaBloco.hidden = true;
+        estadoVisual.textContent = "Aguardando";
+        atualizarPersonagem("vazio");
         return;
     }
-    feedback.hidden = true;
+    dicaBloco.hidden = false;
     const tamanho = campoSenha.value.length;
     const senhaEmMinusculas = campoSenha.value.toLowerCase();
     let temNumero = false;
@@ -50,6 +80,7 @@ campoSenha.addEventListener("input", function () {
             temSimbolo = true;
         }
     }
+    const temVariedade = (temLetra && temNumero) || (temLetra && temSimbolo) || (temNumero && temSimbolo);
     const temBlocoRepetido = ehBlocoRepetido(senhaEmMinusculas);
     const senhaConhecida = senhasConhecidas.includes(senhaEmMinusculas.trim());
     const temSequencia =
@@ -61,19 +92,20 @@ campoSenha.addEventListener("input", function () {
         senhaEmMinusculas.includes("ytrewq");
     if (tamanho <= 7) {
         nota.textContent = "Fraca";
-        motivo.textContent = "Até 7 caracteres é pouco tamanho.";
+        motivo.textContent = temVariedade
+            ? "Você misturou tipos de caracteres, mas até 7 caracteres ainda é pouco tamanho."
+            : "Até 7 caracteres é pouco tamanho.";
         dica.textContent = "Junte palavras sem relação entre si para criar uma frase mais longa.";
-        resultado.hidden = false;
     } else if (tamanho <= 14) {
         nota.textContent = "Pode melhorar";
-        motivo.textContent = "Ainda está abaixo do tamanho que este medidor usa como referência para forte.";
+        motivo.textContent = temVariedade
+            ? "A variedade ajuda, mas ainda está abaixo do tamanho que este medidor usa como referência para forte."
+            : "Ainda está abaixo do tamanho que este medidor usa como referência para forte.";
         dica.textContent = "Junte palavras sem relação entre si; quanto mais longa e imprevisível, melhor.";
-        resultado.hidden = false;
     } else {
         nota.textContent = "Forte";
         motivo.textContent = "Atingiu o tamanho de referência e passou pelas verificações simples deste medidor.";
         dica.textContent = "Quanto mais longa e imprevisível, melhor. Use uma senha diferente em cada site.";
-        resultado.hidden = false;
     }
 
     if (temSequencia && tamanho > 14) {
@@ -95,4 +127,7 @@ campoSenha.addEventListener("input", function () {
         motivo.textContent = "Essa senha está na lista de senhas comuns ou de exemplos publicados.";
         dica.textContent = "Escolha uma frase inventada que não esteja nessa lista.";
     }
+
+    estadoVisual.textContent = nota.textContent;
+    atualizarPersonagem(nota.textContent);
 });

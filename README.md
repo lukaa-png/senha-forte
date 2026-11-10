@@ -1,10 +1,10 @@
 # Senha Forte
 
-**Atualizado em 3 de novembro de 2026**
+**Atualizado em 10 de novembro de 2026**
 
 **Status:** protótipo local em desenvolvimento. O projeto está versionado no GitHub, mas ainda não foi publicado como página web.
 
-Senha Forte é um projeto de aprendizado que une interface, programação e segurança defensiva. A ideia é avaliar uma senha inventada no navegador e explicar, em linguagem simples, o motivo da nota e como melhorá-la. Um personagem ilustrado terá expressões aflita, em dúvida e satisfeita.
+Senha Forte é um projeto de aprendizado que une interface, programação e segurança defensiva. A ideia é avaliar uma senha inventada no navegador e explicar, em linguagem simples, o motivo da nota e como melhorá-la. Um personagem ilustrado reage com expressões aflita, em dúvida e satisfeita.
 
 > Use somente senhas inventadas. Nunca digite uma senha real neste projeto.
 
@@ -15,19 +15,20 @@ Senha Forte é um projeto de aprendizado que une interface, programação e segu
 - [Rascunho da tela e das expressões](design/Rascunho%20%E2%80%A2%20Senha%20e%20avalia%C3%A7%C3%A3o.png)
 - [Arquivo no Figma](https://www.figma.com/design/KeqHO1oMBDl9ikuWDXo3Qg/Rascunho-%E2%80%94-tela-de-senha-e-avalia%C3%A7%C3%A3o?node-id=0-1)
 
-A decisão de design para o estado vazio é orientar, sem dar nota a um campo sem senha. A nota fica sem rótulo, o motivo explica o uso da ferramenta e o personagem fica neutro. Durante a avaliação, a intenção é mostrar somente a expressão correspondente ao estado atual.
+A decisão de design para o estado vazio é orientar, sem dar nota a um campo sem senha. A nota fica como um traço, o motivo explica o uso da ferramenta e o personagem fica neutro. Durante a avaliação, aparece somente a expressão correspondente ao estado atual.
 
 ## O que já foi feito
 
-- Hoje ajustei a nota para considerar tamanho, sequências, blocos repetidos e senhas conhecidas.
-- Também ajustei o aviso de privacidade e a largura da tela para celular.
-- Comecei a identificar letras, números e símbolos. Espaços não contam como símbolo.
+- A nota considera tamanho, sequências, blocos repetidos e uma lista pequena de senhas conhecidas.
+- A tela mostra nota, motivo, dica e aviso perto do campo, inclusive no celular. A cor não é a única pista: há texto e personagem.
+- Conectei as três expressões à nota e criei o estado neutro para o campo vazio.
+- A mensagem reconhece variedade de caracteres sem deixar que ela compense uma senha curta. Espaços não contam como símbolo.
 
-O personagem ainda não está conectado à nota, e o bônus de variedade não foi implementado. As listas de padrões e senhas conhecidas são pequenas e não detectam todas as senhas previsíveis.
+As listas de padrões e senhas conhecidas são pequenas e não detectam todas as senhas previsíveis. A variedade melhora a explicação, mas não altera a nota nesta versão.
 
 ## Critérios e decisões
 
-O comprimento tem o maior peso. A variedade de caracteres pode dar um bônus pequeno, mas símbolos não devem fazer uma senha curta parecer forte. Frases longas com palavras sem relação entre si são uma opção fácil de lembrar. Espaços contam no comprimento. A nota não dependerá só da cor: o resultado terá texto e personagem.
+O comprimento tem o maior peso. A variedade de caracteres aparece no feedback, mas símbolos não fazem uma senha curta parecer forte. Frases longas com palavras sem relação entre si são uma opção fácil de lembrar. Espaços contam no comprimento. A nota não depende só da cor: o resultado tem texto e personagem.
 
 | Comprimento | Nota máxima da régua | Regra |
 | --- | --- | --- |
@@ -46,7 +47,7 @@ Usei como referência o mínimo de 15 caracteres que o [NIST SP 800-63B](https:/
 - Uma senha presente na lista local de senhas comuns ou de exemplos publicados terá teto **Fraca**.
 - Um bloco repetido, como um trecho repetido várias vezes, também terá teto **Fraca**.
 - Sequências óbvias reduzem a nota em um degrau.
-- A variedade pode dar um bônus pequeno, mas nunca decide sozinha se a senha é forte.
+- A variedade é reconhecida na mensagem, mas não decide a nota.
 - O medidor não pede nome, aniversário ou outros dados pessoais.
 
 A detecção é limitada às regras e à lista incluídas no projeto. Ela não consulta serviços externos nem sabe se uma senha foi vazada ou reutilizada.
@@ -61,5 +62,19 @@ Estes exemplos são fictícios e servem apenas para documentar critérios. Não 
 | Zk9#vQ | Curta, mesmo com variedade de caracteres. |
 | 123456123456123456 | Longa, mas repete um bloco previsível. |
 | tijolo lua abacate bicicleta | Frase longa usada para discutir comprimento; publicada, portanto não é uma senha secreta. |
+
+## Mini glossário
+
+**Força bruta:** tentativa de muitas combinações até encontrar a senha.<br>
+Quanto maior e menos previsível ela for, mais trabalho dá para adivinhar.
+
+**Ataque de dicionário:** teste de palavras e combinações prováveis de uma lista.<br>
+Senhas comuns e frases famosas podem aparecer cedo nessa lista.
+
+**Senha comum:** combinação que muitas pessoas escolhem, como `123456`.<br>
+Por ser conhecida, costuma ser uma das primeiras tentativas.
+
+**Autenticação:** processo de confirmar quem está tentando entrar em uma conta.<br>
+A senha é um dos meios possíveis; outro fator pode acrescentar uma verificação.
 
 
